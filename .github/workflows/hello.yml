@@ -1,0 +1,19 @@
+name: My First Action
+
+on:
+  push:
+    branches: [main]
+  workflow_dispatch:
+
+jobs:
+  say-hello:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Print hello
+        run: echo "🎉 Hello! My first GitHub Action is working!"
+
+      - name: Show current date
+        run: date
+
+      - name: Show system info
+        run: uname -a
