@@ -1,0 +1,28 @@
+  name: Run My Project
+
+on:
+  push:
+    branches: [main]
+  workflow_dispatch:
+
+jobs:
+  run-python:
+    runs-on: ubuntu-latest
+    steps:
+      # 第1步：拉取仓库代码
+      - name: Checkout code
+        uses: actions/checkout@v4
+
+      # 第2步：安装 Python
+      - name: Setup Python
+        uses: actions/setup-python@v5
+        with:
+          python-version: '3.12'
+
+      # 第3步：查看文件列表（验证代码已拉取）
+      - name: List files
+        run: ls -la
+
+      # 第4步：运行项目
+      - name: Run app
+        run: python app.py
