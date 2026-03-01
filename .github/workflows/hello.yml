@@ -4,16 +4,29 @@ on:
   push:
     branches: [main]
   workflow_dispatch:
+    inputs:
+      greeting:
+        description: '你想说什么？'
+        required: true
+        default: 'Hello World'
+      environment:
+        description: '选择环境'
+        required: true
+        type: choice
+        options:
+          - development
+          - staging
+          - production
 
 jobs:
   say-hello:
     runs-on: ubuntu-latest
     steps:
-      - name: Print hello
-        run: echo "🎉 Hello! My first GitHub Action is working!"
+      - name: Print greeting
+        run: echo "📢 你说了：${{ github.event.inputs.greeting }}"
 
-      - name: Show current date
-        run: date
+      - name: Show environment
+        run: echo "🌍 当前环境：${{ github.event.inputs.environment }}"
 
-      - name: Show system info
-        run: uname -a
+      - name: Show trigger info
+        run: echo "🚀 由 ${{ github.actor }} 触发"
